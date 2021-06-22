@@ -40,6 +40,8 @@ func ParseStream(x interface{}) (s *Stream, err error) {
 				_ = recover()
 			}()
 
+			defer s.chVal.Close()
+
 			xVal := reflect.ValueOf(x)
 			xLen := xVal.Len()
 			for xIdx := 0; xIdx < xLen; xIdx++ {
